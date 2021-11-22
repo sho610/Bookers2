@@ -1,15 +1,34 @@
-<div>
-    <h3><%= @user.name %></h3>
-    <%= image_tag('sample-author1.jpg') %>
-</div>
+<div class="container px-5 px-sm-0">
 
-<% @books.each do |book| %>
-<div>
-  <%= link_to book_path(book.id) do %>
-    <P>投稿ユーザー画像：<%= image_tag('sample-author1.jpg')%></P>
-  <%end%>
+  <div class="row">
 
-  <p>Title:<%= book.title %></P>
-  <p>Body<%= book.body%></p>
+    <div class = "col-md-3">
+      <%= render 'books/list', book: @book, user: @user %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %>
+            </td>
+            <td>
+              <%= @book.title %>
+            </td>
+            <td> <%= @book.body %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-<%end%>
